@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background: linear-gradient(135deg, #ff6f61, #ffb86c);
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #2c3e50;
+        }
+        input {
+            margin-top: 5px;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            font-size: 16px;
+        }
+        input[type="submit"], button {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        button {
+            background-color: #e74c3c;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            color: #2980b9;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h2>Heart Disease Prediction</h2>
+    <form method="POST" action="/predict" id="predictionForm">
+        {% for field in ['age','sex','cp','tresbps','chol','fbs','restecg','thalach','exang','oldpeak','slope','ca','thal'] %}
+            <label for="{{ field }}">{{ field.capitalize() }}:</label>
+            <input type="text" name="{{ field }}" required>
+        {% endfor %}
+        <input type="submit" value="Predict">
+        <button type="button" onclick="resetForm()">Reset</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        Prediction: {{ result }}
+    </div>
+    {% endif %}
+
+    <script>
+        function resetForm() {
+            document.getElementById("predictionForm").reset();
+            // Reload page to clear the result
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
