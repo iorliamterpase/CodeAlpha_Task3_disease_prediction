@@ -7,10 +7,10 @@ This project is a **Machine Learning model** that predicts  diseases(heart disea
 - Clone this repository and cd into it
 - Create and activate a virtual environment using the command below,
 
- python -m venv venv
- venv\scripts\activate
- python -m pip install --upgrade pip
- pip install -r  requirements.txt
+- python -m venv venv
+- venv\scripts\activate
+- python -m pip install --upgrade pip
+- pip install -r  requirements.txt
 
 
  # To run the flask app use the command below (Easy-to-use  web interface )
